@@ -13,6 +13,7 @@ Disclaimer: This bot provides general information and is not a substitute for of
 5. application tips and tricks
 
 **USage**
+
 Users can ask any type of visa related queries like "What are the documents required for a USA B!/B2 visa?" or "Show me the steps for a UK student visa"
 
 **Teck Stack**
@@ -24,6 +25,7 @@ Users can ask any type of visa related queries like "What are the documents requ
 6. AWS/Vercel
 
 **Privacy**
+
 Encrypted stored data
 Clear information on how user data is used
 
