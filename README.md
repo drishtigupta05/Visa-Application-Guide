@@ -27,8 +27,11 @@ Users can ask any type of visa related queries like "What are the documents requ
 **Privacy**
 
 Encrypted stored data
+
 Clear information on how user data is used
 
 **Support**
+
 For any queries or suggestions, please contact:
+
 drishtigupta1123@gmail.com
