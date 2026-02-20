@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Visa Chat</title>
+  <style>
+    body { font-family: sans-serif; margin:0; padding:20px; background:#f8f9fa; }
+    #chat { height:60vh; overflow-y:auto; border:1px solid #ddd; padding:10px; background:white; margin-bottom:10px; }
+    .user { text-align:right; color:#0066cc; margin:8px 0; }
+    .bot { text-align:left; background:#e9ecef; padding:10px; border-radius:8px; margin:8px 0; max-width:80%; }
+    #input-area { display:flex; }
+    #input { flex:1; padding:10px; }
+    button { padding:10px 20px; background:#0066cc; color:white; border:none; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <h2>US Visa Helper</h2>
+  <div id="chat"></div>
+  <div id="input-area">
+    <input id="input" placeholder="Ask about tourist visa, DS-160, documents..." />
+    <button onclick="send()">Send</button>
+  </div>
+
+  <script>
+    const API = "http://localhost:5000/api/ask";
+
+    function addMsg(cls, text) {
+      const div = document.createElement("div");
+      div.className = cls;
+      div.textContent = text;
+      document.getElementById("chat").appendChild(div);
+      div.scrollIntoView();
+    }
+
+    async function send() {
+      const q = document.getElementById("input").value.trim();
+      if (!q) return;
+      addMsg("user", q);
+      document.getElementById("input").value = "";
+
+      try {
+        const r = await fetch(API, {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({question: q})
+        });
+        const data = await r.json();
+        addMsg("bot", data.reply);
+      } catch(e) {
+        addMsg("bot", "Error: " + e.message);
+      }
+    }
+
+    document.getElementById("input").onkeypress = e => { if (e.key === "Enter") send(); };
+  </script>
+</body>
+</html>
